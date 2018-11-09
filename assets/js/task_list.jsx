@@ -25,7 +25,7 @@ function Task(props) {
       <h2 className="card-title">{task.title}</h2>
       <p className="card-text">
         {task.desc}<br />
-        completed: {task.completed}
+        completed: {task.completed ? "✓" : "❌"}
       </p>
     </div>
   </div>

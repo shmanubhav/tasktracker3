@@ -12,7 +12,7 @@ defmodule TasktrackerWeb.SessionController do
           token: Phoenix.Token.sign(TasktrackerWeb.Endpoint, "user_id", user.id), user_id: user.id,
         }
       }
-
+      IO.inspect(resp)
       conn
       |> put_resp_header("content-type", "application/json; charset=UTF-8")
       |> send_resp(:created, Jason.encode!(resp))

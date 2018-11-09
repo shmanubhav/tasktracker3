@@ -60,19 +60,31 @@ class TheServer {
     });
   }
 
-  //TODO: add sessions resource
-
+  // create_session(email, password) {
+  //   this.send_post(
+  //     "/api/v1/sessions",
+  //     {email, password},
+  //     (resp) => {
+  //       store.dispatch({
+  //         type: 'NEW_SESSION',
+  //         data: resp.data,
+  //       });
+  //     }
+  //   );
+  // }
   create_session(email, password) {
-    this.send_post(
-      "/api/v1/sessions",
-      {email, password},
-      (resp) => {
+    $.ajax("api/v1/sessions", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({email, password}),
+      success: (resp) => {
         store.dispatch({
           type: 'NEW_SESSION',
           data: resp.data,
         });
       }
-    );
+    });
   }
 }
 
