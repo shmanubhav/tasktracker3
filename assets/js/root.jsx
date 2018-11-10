@@ -12,7 +12,7 @@ import TaskList from './task_list';
 import Header from './header';
 import EditTask from './edit_task';
 import NewTask from './new_task';
-import register from './register';
+import Register from './register';
 
 export default function root_init(node, store) {
   ReactDOM.render(

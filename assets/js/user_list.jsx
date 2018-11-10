@@ -3,22 +3,26 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 function UserList(props) {
-  let rows = _.map(props.users, (uu) => <User key={uu.id} user={uu} />);
-  return <div className="row">
-    <div className="col-12">
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows}
-        </tbody>
-      </table>
-    </div>
-  </div>;
+  if (props.session == null) {
+    return <div><p>Login to view your tasks.</p></div>;
+  } else {
+    let rows = _.map(props.users, (uu) => <User key={uu.id} user={uu} />);
+    return <div className="row">
+      <div className="col-12">
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows}
+          </tbody>
+        </table>
+      </div>
+    </div>;
+  }
 }
 
 function User(props) {
@@ -29,4 +33,4 @@ function User(props) {
   </tr>;
 }
 
-export default connect((state) => {return {users: state.users};})(UserList);
+export default connect((state) => {return {users: state.users, session: state.session};})(UserList);

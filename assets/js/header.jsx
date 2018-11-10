@@ -14,7 +14,7 @@ function Header(props) {
   let head = null;
   if (props.session) {
     head = <div className="form-inline my-2">
-      <p>{props.session.user_name} |   </p><button onClick={() => api.delete_session()} className="btn btn-primary">Logout</button>
+      <p>{props.session.user_name} |   </p><Link to="/" onClick={() => api.delete_session()} className="btn btn-primary">Logout</Link>
     </div>;
   } else {
     head = <div className="form-inline my-2">
