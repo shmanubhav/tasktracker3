@@ -22,7 +22,7 @@ use Mix.Releases.Config,
 # when building in that environment, this combination of release
 # and environment configuration is called a profile
 get_secret = fn name ->
-  base = Path.expand("~/.config/husky_shop")
+  base = Path.expand("~/.config/tasktracker3")
   File.mkdir_p!(base)
   path = Path.join(base, name)
   unless File.exists?(path) do

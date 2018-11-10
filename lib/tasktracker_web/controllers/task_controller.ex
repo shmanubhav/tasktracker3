@@ -11,7 +11,8 @@ defmodule TasktrackerWeb.TaskController do
     render(conn, "index.json", tasks: tasks)
   end
 
-  def create(conn, %{"task" => task_params}) do
+  def create(conn, %{"task" => task_params, "token" => token}) do
+    {:ok, user_id} = Phoenix.Token.verify(TasktrackerWeb.Endpoint, "user_id", token)
     with {:ok, %Task{} = task} <- Tasks.create_task(task_params) do
       conn
       |> put_status(:created)
@@ -25,7 +26,8 @@ defmodule TasktrackerWeb.TaskController do
     render(conn, "show.json", task: task)
   end
 
-  def update(conn, %{"id" => id, "task" => task_params}) do
+  def update(conn, %{"id" => id, "task" => task_params, "token" => token}) do
+    {:ok, user_id} = Phoenix.Token.verify(TasktrackerWeb.Endpoint, "user_id", token)
     task = Tasks.get_task!(id)
 
     with {:ok, %Task{} = task} <- Tasks.update_task(task, task_params) do
@@ -33,7 +35,8 @@ defmodule TasktrackerWeb.TaskController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(conn, %{"id" => id, "token" => token}) do
+    {:ok, user_id} = Phoenix.Token.verify(TasktrackerWeb.Endpoint, "user_id", token)
     task = Tasks.get_task!(id)
 
     with {:ok, %Task{}} <- Tasks.delete_task(task) do

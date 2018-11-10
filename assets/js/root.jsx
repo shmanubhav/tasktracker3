@@ -10,6 +10,9 @@ import api from './api';
 import UserList from './user_list';
 import TaskList from './task_list';
 import Header from './header';
+import EditTask from './edit_task';
+import NewTask from './new_task';
+import register from './register';
 
 export default function root_init(node, store) {
   ReactDOM.render(
@@ -21,8 +24,6 @@ export default function root_init(node, store) {
 class Root extends React.Component {
   constructor(props) {
     super(props);
-
-    // api.create_session("john@abc.com", "pass12345");
     api.fetch_tasks();
     api.fetch_users();
   }
@@ -39,6 +40,15 @@ class Root extends React.Component {
               } />
               <Route path="/users" exact={true} render={() =>
                 <UserList />
+              } />
+              <Route path="/new_task" exact={true} render={() =>
+                <NewTask />
+              } />
+              <Route path="/edit_task/:id" exact={true} render={() =>
+                <EditTask />
+              } />
+              <Route path="/register" exact={true} render={() =>
+                <Register />
               } />
             </div>
           </div>

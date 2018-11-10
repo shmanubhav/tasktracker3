@@ -13,8 +13,8 @@ config :tasktracker, TasktrackerWeb.Endpoint,
   server: true,
   root: ".",
   version: Application.spec(:phoenix_distillery, :vsn),
-  http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [host: "example.com", port: 80],
+  http: [:inet6, port: System.get_env("PORT")],
+  url: [host: "tasks3.pyxis.blue", port: 443, scheme: "https"],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
@@ -72,7 +72,7 @@ config :logger, level: :info
 # Finally import the config/prod.secret.exs which should be versioned
 # separately.
 get_secret = fn name ->
-  base = Path.expand("~/.config/husky_shop")
+  base = Path.expand("~/.config/tasktracker3")
   File.mkdir_p!(base)
   path = Path.join(base, name)
   unless File.exists?(path) do

@@ -7,6 +7,12 @@ function UserList(props) {
   return <div className="row">
     <div className="col-12">
       <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Name</th>
+          </tr>
+        </thead>
         <tbody>
           {rows}
         </tbody>
